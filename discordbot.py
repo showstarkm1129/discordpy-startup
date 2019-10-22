@@ -17,6 +17,8 @@ async def on_command_error(ctx, error):
     if isinstance(error, CommandNotFound):
         embed=discord.Embed(title="そのコマンドは存在しません！",color=discord.Color(random.randint(0,0xFFFFFF)))
         await ctx.send(embed=embed)
+        return
+    raise error
 
 @bot.command()
 async def ping(ctx):
