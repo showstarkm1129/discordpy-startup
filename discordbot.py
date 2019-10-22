@@ -14,12 +14,14 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=activname))
     before = time.monotonic()
     embed=discord.Embed(title="起動",description="編集中",color=discord.Color(random.randint(0,0xFFFFFF)))
-    msg = await asyncio.gather(*(c.send(embed=embed) for c in bot.get_all_channels() if c.name == 'ごりら起動ログ'))
+    edmsg = await ctx.send(embed=embed)
     pong = (time.monotonic() - before) * 1000
-    amsg = "pong! : {0}ms \n 導入サーバー数 : {1}".format(pong,guildco)
-    embed=discord.Embed(title="起動",description=amsg,color=discord.Color(random.randint(0,0xFFFFFF)))
-    await msg.edit(embed=embed)
-
+    await edmsg.delete()
+  
+    smsg = "pong! : {0}ms \n 導入サーバー数 : {1}".format(pong,guildco)
+    embed=discord.Embed(title="起動",description=smsg,color=discord.Color(random.randint(0,0xFFFFFF)))
+    await asyncio.gather(*(c.send(embed=embed) for c in bot.get_all_channels() if c.name == 'ごりら起動ログ'))
+    
 #━━ エラー ━━#
 @bot.event
 async def on_command_error(ctx, error):
