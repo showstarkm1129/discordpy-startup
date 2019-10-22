@@ -1,5 +1,5 @@
 from discord.ext import commands
-import os,traceback,discord,random,asyncio
+import os,traceback,discord,random,asyncio,time
 from discord.ext.commands import CommandNotFound
 client = discord.Client()
 
