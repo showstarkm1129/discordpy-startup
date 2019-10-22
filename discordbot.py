@@ -13,13 +13,11 @@ async def on_ready():
     activname = "導入サーバー数" + guildco + " 現在開発モードです。"
     await bot.change_presence(activity=discord.Game(name=activname))
     before = time.monotonic()
-    embed=discord.Embed(title="起動",description="編集中",color=discord.Color(random.randint(0,0xFFFFFF)))
-    edmsg = await ctx.send(embed=embed)
+    await asyncio.gather(*(c.send("```起動中```") for c in bot.get_all_channels() if c.name == 'ごりら起動ログ'))
     pong = (time.monotonic() - before) * 1000
-    await edmsg.delete()
-  
-    smsg = "pong! : {0}ms \n 導入サーバー数 : {1}".format(pong,guildco)
-    embed=discord.Embed(title="起動",description=smsg,color=discord.Color(random.randint(0,0xFFFFFF)))
+    
+    msg = "pong! : {0}ms \n 導入サーバー数 : {1}".format(pong,guildco)
+    embed=discord.Embed(title="起動",description=msg,color=discord.Color(random.randint(0,0xFFFFFF)))
     await asyncio.gather(*(c.send(embed=embed) for c in bot.get_all_channels() if c.name == 'ごりら起動ログ'))
     
 #━━ エラー ━━#
