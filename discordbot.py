@@ -14,11 +14,11 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=activname))
     before = time.monotonic()
     embed=discord.Embed(title="起動",description="編集中",color=discord.Color(random.randint(0,0xFFFFFF)))
-    amsg = await asyncio.gather(*(c.send(embed=embed) for c in bot.get_all_channels() if c.name == 'ごりら起動ログ'))
+    msg = await asyncio.gather(*(c.send(embed=embed) for c in bot.get_all_channels() if c.name == 'ごりら起動ログ'))
     pong = (time.monotonic() - before) * 1000
-    msg = "pong! : {0}ms \n 導入サーバー数 : {1}".format(pong,guildco)
-    embed=discord.Embed(title="起動",description=msg,color=discord.Color(random.randint(0,0xFFFFFF)))
-    await amsg.edit(embed=embed)
+    amsg = "pong! : {0}ms \n 導入サーバー数 : {1}".format(pong,guildco)
+    embed=discord.Embed(title="起動",description=amsg,color=discord.Color(random.randint(0,0xFFFFFF)))
+    await msg.edit(embed=embed)
 
 #━━ エラー ━━#
 @bot.event
